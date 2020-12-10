@@ -1,0 +1,5 @@
+# Banco de Dados
+USER=FelipeLeall
+PASS=Dyth0218
+DBNAME=naotenhopaz
+LINK=mongodb+srv://FelipeLeall:Dyth0218@cluster0.no1fm.gcp.mongodb.net/Cluster0?retryWrites=true&w=majority

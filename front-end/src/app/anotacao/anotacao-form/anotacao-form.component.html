@@ -1,0 +1,58 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+    <mat-form-field>
+        <mat-label>Digite aqui o conteudo da anotação</mat-label>
+        <input matInput placeholder="..." [(ngModel)]="anotacao.text" name="text" required>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select [(ngModel)]="anotacao.usuario_id" name="usuario_id" required>
+            <mat-option *ngFor="let usuario of usuarios" [value]="usuario._id">
+                {{ usuario.nickname }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Pasta</mat-label>
+        <mat-select [(ngModel)]="anotacao.pasta_id" name="pasta_id">
+            <mat-option *ngFor="let pasta of pastas" [value]="pasta._id">
+                {{ pasta.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Cor</mat-label>
+        <mat-select [(ngModel)]="anotacao.interface_id" name="interface_id" required>
+            <mat-option *ngFor="let interface of interfaces" [value]="interface._id">
+                {{ interface.name_theme }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Fonte</mat-label>
+        <mat-select [(ngModel)]="anotacao.texto_id" name="texto_id" required>
+            <mat-option *ngFor="let texto of textos" [value]="texto._id">
+                {{ texto.font }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-toolbar class="form-buttons">
+        <mat-toolbar-row>
+            <button mat-raised-button type="submit" color="accent">
+                Salvar
+            </button>
+            <button mat-raised-button type="button" (click)="voltar(f)">
+                Voltar
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</form>

@@ -1,0 +1,14 @@
+mat-toolbar{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    height: 8%;
+
+    font-size: 14px;
+
+    mat-icon{
+        size: 16px;
+        margin-left: 0.5rem;
+    }
+}

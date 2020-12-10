@@ -1,0 +1,46 @@
+<mat-toolbar class="new-item">
+  <h1>Fontes</h1>
+  <a  mat-raised-button  [routerLink]="['/texto/novo']">
+    <mat-icon>add_circle</mat-icon>
+    Fontes
+  </a>
+</mat-toolbar>
+
+<table mat-table [dataSource]="texto" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Nome -->
+    <ng-container matColumnDef="font">
+      <th mat-header-cell *matHeaderCellDef>Font</th>
+      <td mat-cell *matCellDef="let texto"> {{texto.font}} </td>
+    </ng-container>
+  
+    <!-- Carga -->
+    <ng-container matColumnDef="font_link">
+      <th mat-header-cell *matHeaderCellDef> Link </th>
+      <td mat-cell *matCellDef="let texto"> {{texto.font_link}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef class="cell-aling-center">Editar</th>
+      <td mat-cell *matCellDef="let texto"  class="cell-aling-center">
+        <a mat-raised-button title="Editar" [routerLink]="['/texto', texto._id]">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="excluir">
+      <th mat-header-cell class="cell-aling-center" *matHeaderCellDef>Excluir</th>
+      <td mat-cell class="cell-aling-center" *matCellDef="let texto">
+        <button mat-raised-button color="warn" title="Excluir" (click)="excluir(texto._id)">
+          <mat-icon>delete-forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

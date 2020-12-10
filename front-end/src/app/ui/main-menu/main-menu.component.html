@@ -1,0 +1,10 @@
+  <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <!-- <a mat-menu-item [routerLink]="['/curso']">Cursos</a>
+    <a mat-menu-item [routerLink]="['/turma']">Turma</a> -->
+    <a mat-menu-item [routerLink]="['/anotacao']">Anotações</a>
+    <a mat-menu-item [routerLink]="['/texto']">Fontes</a>
+    <a mat-menu-item [routerLink]="['/interface']">Cores</a>
+  </mat-menu>

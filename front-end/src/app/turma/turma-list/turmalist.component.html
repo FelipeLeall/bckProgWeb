@@ -1,0 +1,74 @@
+<h1>Listagem de Turmas</h1>
+
+<mat-toolbar class="new-item">
+    <a mat-raised-button [routerLink]="['/turma/novo']">
+        <mat-icon>add_circle</mat-icon>
+        Nova Turma
+    </a>
+</mat-toolbar>
+
+<table mat-table [dataSource]="turmas" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Nome -->
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Turma</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.nome}} </td>
+    </ng-container>
+
+    <!-- Curso -->
+    <ng-container matColumnDef="curso">
+        <th mat-header-cell *matHeaderCellDef>Curso</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.curso?.nome}} </td>
+    </ng-container>
+
+    <!-- Professor -->
+    <ng-container matColumnDef="professor">
+        <th mat-header-cell *matHeaderCellDef>Professor</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.professor?.nome}} </td>
+    </ng-container>
+
+    <!-- Dias -->
+    <ng-container matColumnDef="dias_semana">
+        <th mat-header-cell *matHeaderCellDef>Dias</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.dias_semana}} </td>
+    </ng-container>
+
+    <!-- horario -->
+    <ng-container matColumnDef="horario">
+        <th mat-header-cell *matHeaderCellDef>Horário</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.horario_inicial}} &mdash; {{turma.horario_final}} </td>
+    </ng-container>
+
+    <!-- horario -->
+    <ng-container matColumnDef="sala_aula">
+        <th mat-header-cell *matHeaderCellDef>Sala</th>
+        <td mat-cell *matCellDef="let turma"> {{turma.sala_aula?.nome}}</td>
+    </ng-container>
+
+
+
+
+    <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef class="cell-aling-center">Editar</th>
+        <td mat-cell *matCellDef="let turma" class="cell-aling-center">
+            <a mat-raised-button title="Editar" [routerLink]="['/turma', turma._id]">
+                <mat-icon>edit</mat-icon>
+            </a>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="excluir">
+        <th mat-header-cell class="cell-aling-center" *matHeaderCellDef>Excluir</th>
+        <td mat-cell class="cell-aling-center" *matCellDef="let turma">
+            <button mat-raised-button color="warn" title="Excluir" (click)="excluir(turma._id)">
+                <mat-icon>delete-forever</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
