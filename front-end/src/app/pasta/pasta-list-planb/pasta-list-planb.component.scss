@@ -1,0 +1,19 @@
+
+div .mat-subheader{
+    
+    a {
+        visibility: hidden;
+    }
+    
+    button {
+        visibility: hidden;
+    }
+    
+    a:hover {
+        visibility: visible;
+    }
+    
+    button:hover {
+        visibility: visible;
+    }
+}

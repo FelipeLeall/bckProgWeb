@@ -2,9 +2,14 @@
 
 <form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
 
-    <mat-form-field>
-        <mat-label>Digite aqui o conteudo da anotação</mat-label>
+    <!-- <mat-form-field>
+        <mat-label></mat-label>
         <input matInput placeholder="..." [(ngModel)]="anotacao.text" name="text" required>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
+        <mat-label>Digite aqui o conteudo da anotação</mat-label>
+        <textarea matInput placeholder="..." [(ngModel)]="anotacao.text" name="text" required></textarea>
     </mat-form-field>
 
 

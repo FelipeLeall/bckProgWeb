@@ -1,0 +1,26 @@
+
+<mat-toolbar class="new-item">
+    <h1>Lista de Pastas</h1>
+    <a mat-raised-button class="pasta" [routerLink]="['/pasta/novo']">
+      <mat-icon>add_circle</mat-icon>
+      Pasta
+    </a>
+</mat-toolbar>
+
+<mat-list>
+    <!-- <div mat-subheader>Folders</div> -->
+    <mat-list-item *ngFor="let pasta of pastas">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>{{pasta.name}}</div>
+        <div mat-line> {{pasta.updated | date}} </div>
+
+        <a mat-icon-button title="Editar" [routerLink]="['/pasta', pasta._id]">
+            <mat-icon>edit</mat-icon>
+        </a>
+
+        <button mat-icon-button title="Excluir" (click)="excluir(pasta._id)">
+            <mat-icon>delete-forever</mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>

@@ -1,1 +1,36 @@
-<p>usuario-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+  <mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput placeholder="Login" [(ngModel)]="usuario.login_name" name="login_name" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Senha</mat-label>
+    <input type="password" matInput placeholder="Senha" [(ngModel)]="usuario.password" name="password" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nome do Tema</mat-label>
+    <input matInput placeholder="nickname" [(ngModel)]="usuario.nickname" name="nickname" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>email</mat-label>
+    <input matInput placeholder="Email" [(ngModel)]="usuario.email" name="email" required>
+  </mat-form-field>
+  
+
+  <mat-toolbar class="form-buttons">
+    <mat-toolbar-row>
+       <button mat-raised-button type="submit" color="accent">
+          Salvar
+       </button>
+       <button mat-raised-button type="button" (click)="voltar(f)">
+          Voltar
+       </button>
+    </mat-toolbar-row>
+ </mat-toolbar>
+</form>

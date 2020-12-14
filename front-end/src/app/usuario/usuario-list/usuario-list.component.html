@@ -1,1 +1,44 @@
-<p>usuario-list works!</p>
+<mat-toolbar class="new-item">
+    <h1>Lista de Usuarios</h1>
+    <a mat-raised-button class="usuario" [routerLink]="['/usuario/novo']">
+      <mat-icon>add_circle</mat-icon>
+      Usuario
+    </a>
+</mat-toolbar>
+  
+  <table mat-table [dataSource]="usuario" class="mat-elevation-z8">
+    
+    <!-- Name -->
+    <ng-container matColumnDef="nickname">
+      <th mat-header-cell *matHeaderCellDef>NickName</th>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.nickname}} </td>
+    </ng-container>
+  
+    <!-- Color -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.email}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef class="cell-aling-center">Editar</th>
+      <td mat-cell *matCellDef="let usuario" class="cell-aling-center">
+        <a mat-raised-button title="Editar" [routerLink]="['/usuario', usuario._id]">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="excluir">
+      <th mat-header-cell class="cell-aling-center" *matHeaderCellDef>Excluir</th>
+      <td mat-cell class="cell-aling-center" *matCellDef="let usuario">
+        <button mat-raised-button color="warn" title="Excluir" (click)="excluir(usuario._id)">
+          <mat-icon>delete-forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

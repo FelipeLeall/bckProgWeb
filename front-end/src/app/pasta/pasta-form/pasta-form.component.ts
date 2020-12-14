@@ -1,53 +1,33 @@
-import { PastaService } from './../../pasta/pasta.service';
+import { AnotacaoService } from './../../anotacao/anatacao.service';
+import { PastaService } from './../pasta.service';
 import { UsuarioService } from './../../usuario/usuario.service';
-import { FontService } from './../../font/font.service';
-import { InterfaceService } from './../../interface/interface.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AnotacaoService } from '../anatacao.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-anotacao-form',
-  templateUrl: './anotacao-form.component.html',
-  styleUrls: ['./anotacao-form.component.scss']
+  selector: 'app-pasta-form',
+  templateUrl: './pasta-form.component.html',
+  styleUrls: ['./pasta-form.component.scss']
 })
-export class AnotacaoFormComponent implements OnInit {
+export class PastaFormComponent implements OnInit {
 
   // Variável para armazenar os dados do registro
-  anotacao : any = {}  // Objeto vazio, nome no SINGULAR
+  pasta: any = {}  // Objeto vazio, nome no SINGULAR
 
-  title : string = 'Nova Anotação'
+  title : string = 'Nova Pasta'
 
   // Variáveis para armazenar as listagens de objetos relacionados
-  interfaces : any = []   // Vetor vazio, nome no PLURAL
-  textos : any = [] 
   usuarios : any = []
-  pastas : any = []
-
-  // dia = Date.prototype.getDay()
-  // mes = Date.prototype.getMonth()
-  // ano = Date.prototype.getFullYear()
-
-  // hora = Date.prototype.getHours()
-  // minuto = Date.prototype.getMinutes()
-  // segundos = Date.prototype.getSeconds()
-  // milis = Date.prototype.getMilliseconds()
-
-  // date: Date = `${this.ano}-${this.mes}-${this.dia}T${this.hora}:${this.minuto}:${this.milis}Z`
-
-
-
+  anotacoes : any = []
 
   constructor(
-    private anotacaoSrv : AnotacaoService,
-    // Services das entidades relacionadas
-    private interfaceSrv : InterfaceService,
-    private fontSrv : FontService,
-    private usuarioSrv : UsuarioService,
+
+    private  anotacaoSrv: AnotacaoService,
+    private usuarioSrv: UsuarioService,
     private pastaSrv: PastaService,
     private snackBar : MatSnackBar,
     private location : Location,
@@ -60,9 +40,9 @@ export class AnotacaoFormComponent implements OnInit {
       try {
         // 1) Acionar o back-end para buscar esse registro
         // e disponibilizá-lo para edição        
-        this.anotacao = await this.anotacaoSrv.obterUm(this.actRoute.snapshot.params['id'])
+        this.pasta = await this.pastaSrv.obterUm(this.actRoute.snapshot.params['id'])
         // 2) Mudar o título da página
-        this.title = 'Editando Anotação'
+        this.title = 'Editando Pasta'
       }
       catch(erro) {
         console.log(erro)
@@ -76,10 +56,9 @@ export class AnotacaoFormComponent implements OnInit {
 
   async carregarDados() {
     try {
-      this.interfaces = await this.interfaceSrv.listar()
-      this.textos = await this.fontSrv.listar()
+
       this.usuarios = await this.usuarioSrv.listar()
-      this.pastas = await this.pastaSrv.listar()
+      this. anotacoes = await this.anotacaoSrv.listar()
     }
     catch(erro) {
       console.log(erro)
@@ -96,11 +75,11 @@ export class AnotacaoFormComponent implements OnInit {
         // 1) Salvar os dados no back-end
         // Se o turma já existir (caso de edição), ele já terá
         // o atributo _id
-        if(this.anotacao._id) {
-          await this.anotacaoSrv.atualizar(this.anotacao) // Atualização
+        if(this.pasta._id) {
+          await this.pastaSrv.atualizar(this.pasta) // Atualização
         }
         else {
-          await this.anotacaoSrv.novo(this.anotacao)
+          await this.pastaSrv.novo(this.pasta)
         }
         // 2) Dar o feedback para o usuário
         this.snackBar.open('Dados salvos com sucesso.', 'Entendi',

@@ -1,35 +1,37 @@
+import { PastaService } from './../pasta.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'app-usuario-list',
-  templateUrl: './usuario-list.component.html',
-  styleUrls: ['./usuario-list.component.scss']
+  selector: 'app-pasta-list-planb',
+  templateUrl: './pasta-list-planb.component.html',
+  styleUrls: ['./pasta-list-planb.component.scss']
 })
-export class UsuarioListComponent implements OnInit {
+export class PastaListPlanbComponent implements OnInit {
 
-  usuario: any = []
+  pastas: any = []
 
   // Configurando quais dados serão exibidas
-  displayedColumns: string[] = ['nickname','email','editar','excluir']
- 
+  // listFolders: string[] = ['text','usuario_id','pasta_id','interface_id','texto_id','editar','excluir'] 
+
 
   constructor(
-    private fontSrv : UsuarioService,
+    private pastaSrv : PastaService,
     private snackBar : MatSnackBar
+
     ) { }
 
   async ngOnInit() {
-    this.usuario = await this.fontSrv.listar()
-    console.log(this.usuario)
+    this.pastas = await this.pastaSrv.listar()
+    console.log(this.pastas)
+
   }
 
   async excluir(id: string){
     if(confirm("Deseja realmente excluir ?")){
       try{
-        await this.fontSrv.excluir(id)
+        await this.pastaSrv.excluir(id)
         // alert("Vai excluir o registro com id="+id)
         this.ngOnInit()
         // Feedback

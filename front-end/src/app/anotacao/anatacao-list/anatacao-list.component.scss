@@ -5,3 +5,10 @@ table{
 mat-toolbar .mat-raised-button{
     margin-right: 2%;
 }
+
+
+ng-container{
+    td{
+        text-overflow: ellipsis;
+    }
+} 

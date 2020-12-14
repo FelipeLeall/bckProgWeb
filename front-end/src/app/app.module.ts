@@ -28,6 +28,9 @@ import { UsuarioListComponent } from './usuario/usuario-list/usuario-list.compon
 import { UsuarioFormComponent } from './usuario/usuario-form/usuario-form.component';
 import { AnotacaoListComponent } from './anotacao/anatacao-list/anatacao-list.component';
 import { AnotacaoFormComponent } from './anotacao/anotacao-form/anotacao-form.component';
+import { PastaListComponent } from './pasta/pasta-list/pasta-list.component';
+import { PastaFormComponent } from './pasta/pasta-form/pasta-form.component';
+import { PastaListPlanbComponent } from './pasta/pasta-list-planb/pasta-list-planb.component';
 
 
 @NgModule({
@@ -49,6 +52,9 @@ import { AnotacaoFormComponent } from './anotacao/anotacao-form/anotacao-form.co
     UsuarioFormComponent,
     AnotacaoListComponent,
     AnotacaoFormComponent,
+    PastaListComponent,
+    PastaFormComponent,
+    PastaListPlanbComponent,
 
   ],
   imports: [
